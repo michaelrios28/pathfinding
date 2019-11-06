@@ -8,3 +8,15 @@
    border-width: 1px 1px 0px 0px;
    border-color: gainsboro; */
 }
+
+.node:hover {
+   box-shadow: 1px 2px 2px 0px rgba(137, 145, 158, 0.4);
+}
+
+.startNode {
+   background-color: #1de9b6;
+}
+
+.endNode {
+   background-color: #ff1744;
+}

@@ -5,6 +5,9 @@ import "./PathfindingVisualizer.css";
 export const PathfindingVisualizer = () => {
    const nodes = []; // 2D Array
 
+   const startNode = [1, 1];
+   const endNode = [15, 15];
+
    // create grid
    for (let row = 0; row < 30; row++) {
       const currentRow = [];
@@ -14,16 +17,17 @@ export const PathfindingVisualizer = () => {
       nodes.push(currentRow);
    }
 
-   const test = nodes[0];
-   console.log(test);
-
    return (
       <div className="grid">
-         {nodes.map(row => {
+         {nodes.map((row, rindx) => {
             return (
                <div className="row">
-                  {row.map(node => (
-                     <Node />
+                  {row.map((col, cindx) => (
+                     <Node
+                        pos={[rindx, cindx]}
+                        startNode={startNode}
+                        endNode={endNode}
+                     />
                   ))}
                </div>
             );
