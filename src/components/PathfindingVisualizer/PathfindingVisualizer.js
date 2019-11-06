@@ -21,9 +21,10 @@ export const PathfindingVisualizer = () => {
       <div className="grid">
          {nodes.map((row, rindx) => {
             return (
-               <div className="row">
+               <div key={rindx} className="row">
                   {row.map((col, cindx) => (
                      <Node
+                        key={cindx}
                         pos={[rindx, cindx]}
                         startNode={startNode}
                         endNode={endNode}
