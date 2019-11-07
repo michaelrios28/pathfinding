@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { Node } from "../Node/Node";
 import "./PathfindingVisualizer.css";
 
 export const PathfindingVisualizer = () => {
    const nodes = []; // 2D Array
 
-   const startNode = [1, 1];
-   const endNode = [15, 15];
+   const [startNode, setStartNode] = useState([1, 1]);
+   const [endNode, setEndNode] = useState([15, 15]);
+   console.log(startNode);
 
    // create grid
    for (let row = 0; row < 30; row++) {
@@ -15,6 +16,11 @@ export const PathfindingVisualizer = () => {
          currentRow.push([]);
       }
       nodes.push(currentRow);
+   }
+
+   function handleSetStartNode(coor) {
+      console.log(coor);
+      setStartNode(coor);
    }
 
    return (
@@ -28,6 +34,7 @@ export const PathfindingVisualizer = () => {
                         pos={[rindx, cindx]}
                         startNode={startNode}
                         endNode={endNode}
+                        handleSetStartNode={handleSetStartNode}
                      />
                   ))}
                </div>
