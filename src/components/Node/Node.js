@@ -17,17 +17,15 @@ export const Node = props => {
       className += "endNode";
    }
 
-   function handleClick() {
-      console.log("props.pos", props.pos);
-   }
-
    return (
       <div
+         className={className}
          draggable={draggable}
          onDragStart={e => props.handleDragStart(e, props.pos)}
-         onClick={handleClick}
-         className={className}
          onDrop={e => props.handleDrop(e, props.pos)}
+         //styling
+         onDragEnter={e => (e.target.style.backgroundColor = "#cfd8dc")}
+         onDragLeave={e => (e.target.style.backgroundColor = "")}
          // need this for drop to trigger
          onDragOver={e => e.preventDefault()}
       />

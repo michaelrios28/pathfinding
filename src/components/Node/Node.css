@@ -22,7 +22,7 @@
 
 .startNode:hover,
 .endNode:hover {
-   box-shadow: 1px 2px 2px 0px rgba(137, 145, 158, 0.4);
+   box-shadow: 1px 2px 2px 0px rgba(123, 159, 218, 0.6);
 }
 
 .node:drag-over {

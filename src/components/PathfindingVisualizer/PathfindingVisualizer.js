@@ -4,12 +4,9 @@ import "./PathfindingVisualizer.css";
 
 export const PathfindingVisualizer = () => {
    const nodes = []; // 2D Array
-   const [startNode, setStartNode] = useState([1, 1]);
-   const [endNode, setEndNode] = useState([15, 15]);
+   const [startNode, setStartNode] = useState([10, 22]);
+   const [endNode, setEndNode] = useState([10, 37]);
    let draggedNode = "";
-
-   console.log("startNode", startNode);
-   console.log("endNode", endNode);
 
    // create grid
    for (let row = 0; row < 30; row++) {
@@ -30,7 +27,7 @@ export const PathfindingVisualizer = () => {
 
    function handleDrop(event, pos) {
       event.preventDefault();
-
+      event.target.style.backgroundColor = "";
       if (draggedNode === "startNode") {
          setStartNode(pos);
       } else if (draggedNode === "endNode") {
