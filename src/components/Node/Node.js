@@ -25,11 +25,11 @@ export const Node = props => {
       <div
          draggable={draggable}
          onDragStart={e => props.handleDragStart(e, props.pos)}
-         // onDragEnter={props.handleDragEnter} //drop element
          onClick={handleClick}
          className={className}
          onDrop={e => props.handleDrop(e, props.pos)}
-         onDragOver={props.handleDragOver}
+         // need this for drop to trigger
+         onDragOver={e => e.preventDefault()}
       />
    );
 };
