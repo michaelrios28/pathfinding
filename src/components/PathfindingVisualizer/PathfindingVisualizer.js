@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Node } from "../Node/Node";
 import "./PathfindingVisualizer.css";
+import { aStarAlgo } from "../helpers/AStar";
 
 export const PathfindingVisualizer = () => {
    const nodes = []; // 2D Array
@@ -34,6 +35,8 @@ export const PathfindingVisualizer = () => {
          setEndNode(pos);
       }
    }
+
+   aStarAlgo.init(nodes);
 
    return (
       <div className="grid">
