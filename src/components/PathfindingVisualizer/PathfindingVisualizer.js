@@ -59,7 +59,11 @@ export const PathfindingVisualizer = () => {
    }
 
    function handleMouseOver(event, pos) {
-      if (mouseDown) {
+      if (
+         mouseDown &&
+         JSON.stringify(pos) !== JSON.stringify(startNode) &&
+         JSON.stringify(pos) !== JSON.stringify(endNode)
+      ) {
          console.log(pos);
          event.target.classList.add("wall");
       }
