@@ -15,9 +15,11 @@
 
 .startNode {
    background-color: #1de9b6;
+   border-color: #1de9b6;
 }
 .endNode {
    background-color: #ff1744;
+   border-color: #ff1744;
 }
 
 .startNode:hover,
