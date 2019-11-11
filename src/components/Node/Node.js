@@ -17,20 +17,10 @@ export const Node = props => {
       className += " endNode";
    }
 
-   function handleClick(event) {
-      console.log("click event", event.target);
-   }
-
    return (
       <div
-         onClick={handleClick}
          onMouseDown={e => {
-            if (
-               !e.target.classList.contains("startNode") &&
-               !e.target.classList.contains("endNode")
-            ) {
-               props.handleMouseDown(e, props.pos);
-            }
+            props.handleMouseDown(e, props.pos);
          }}
          onMouseOver={e => {
             props.handleMouseOver(e, props.pos);

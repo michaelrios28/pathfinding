@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Node } from "../Node/Node";
 import "./PathfindingVisualizer.css";
 import { aStarAlgo } from "../helpers/AStar";
@@ -7,9 +7,7 @@ export const PathfindingVisualizer = () => {
    const nodes = []; // 2D Array
    let startNode = [0, 0];
    let endNode = [59, 29];
-   // const [mouseDown, setMouseDown] = useState(false);
    let mouseDown = false;
-
    let draggedNode = "";
 
    // create grid
@@ -55,10 +53,8 @@ export const PathfindingVisualizer = () => {
          JSON.stringify(pos) !== JSON.stringify(startNode) &&
          JSON.stringify(pos) !== JSON.stringify(endNode)
       ) {
-         // setMouseDown(true);
          mouseDown = true;
          event.target.classList.add("wall");
-         console.log(pos);
       }
    }
 
@@ -69,14 +65,11 @@ export const PathfindingVisualizer = () => {
       }
    }
 
-   function handleMouseUp(event, pos) {
-      // setMouseDown(false);
+   function handleMouseUp() {
       mouseDown = false;
-      console.log(pos);
    }
 
    aStarAlgo.init(nodes);
-   console.log(nodes);
 
    return (
       <div className="grid">
@@ -91,7 +84,6 @@ export const PathfindingVisualizer = () => {
                         endNode={endNode}
                         handleDragStart={handleDragStart}
                         handleDrop={handleDrop}
-                        // handleClick={handleClick}
                         handleMouseDown={handleMouseDown}
                         handleMouseOver={handleMouseOver}
                         handleMouseUp={handleMouseUp}
