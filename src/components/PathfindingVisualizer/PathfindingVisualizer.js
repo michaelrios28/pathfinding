@@ -5,9 +5,10 @@ import { aStarAlgo } from "../helpers/AStar";
 
 export const PathfindingVisualizer = () => {
    const nodes = []; // 2D Array
-   const [startNode, setStartNode] = useState([0, 0]);
-   const [endNode, setEndNode] = useState([59, 29]);
-   const [mouseDown, setMouseDown] = useState(false);
+   let startNode = [0, 0];
+   let endNode = [59, 29];
+   // const [mouseDown, setMouseDown] = useState(false);
+   let mouseDown = false;
 
    let draggedNode = "";
 
@@ -28,19 +29,25 @@ export const PathfindingVisualizer = () => {
    function handleDragStart(event, pos) {
       if (event.target.classList.contains("startNode")) {
          draggedNode = "startNode";
+         event.target.classList.remove("startNode");
       } else if (event.target.classList.contains("endNode")) {
          draggedNode = "endNode";
+         event.target.classList.remove("endNode");
       }
+      event.target.draggable = false;
    }
 
    function handleDrop(event, pos) {
       event.preventDefault();
       event.target.style.backgroundColor = "";
       if (draggedNode === "startNode") {
-         setStartNode(pos);
+         startNode = pos;
+         event.target.classList.add("startNode");
       } else if (draggedNode === "endNode") {
-         setEndNode(pos);
+         endNode = pos;
+         event.target.classList.add("endNode");
       }
+      event.target.draggable = true;
    }
 
    function handleMouseDown(event, pos) {
@@ -48,17 +55,23 @@ export const PathfindingVisualizer = () => {
          JSON.stringify(pos) !== JSON.stringify(startNode) &&
          JSON.stringify(pos) !== JSON.stringify(endNode)
       ) {
-         setMouseDown(true);
+         // setMouseDown(true);
+         mouseDown = true;
+         event.target.classList.add("wall");
          console.log(pos);
       }
    }
 
    function handleMouseOver(event, pos) {
-      if (mouseDown) console.log(pos);
+      if (mouseDown) {
+         console.log(pos);
+         event.target.classList.add("wall");
+      }
    }
 
    function handleMouseUp(event, pos) {
-      setMouseDown(false);
+      // setMouseDown(false);
+      mouseDown = false;
       console.log(pos);
    }
 
