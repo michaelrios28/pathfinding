@@ -5,8 +5,10 @@ import { aStarAlgo } from "../helpers/AStar";
 
 export const PathfindingVisualizer = () => {
    const nodes = []; // 2D Array
-   const [startNode, setStartNode] = useState([10, 22]);
-   const [endNode, setEndNode] = useState([10, 37]);
+   const [startNode, setStartNode] = useState([0, 0]);
+   const [endNode, setEndNode] = useState([59, 29]);
+   const [mouseDown, setMouseDown] = useState(false);
+
    let draggedNode = "";
 
    // create grid
@@ -16,6 +18,11 @@ export const PathfindingVisualizer = () => {
          currentRow.push([]);
       }
       nodes.push(currentRow);
+   }
+   for (let x = 0; x < nodes.length; x++) {
+      for (let y = 0; y < nodes[0].length; y++) {
+         nodes[x][y].isWall = false;
+      }
    }
 
    function handleDragStart(event, pos) {
@@ -36,7 +43,27 @@ export const PathfindingVisualizer = () => {
       }
    }
 
+   function handleMouseDown(event, pos) {
+      if (
+         JSON.stringify(pos) !== JSON.stringify(startNode) &&
+         JSON.stringify(pos) !== JSON.stringify(endNode)
+      ) {
+         setMouseDown(true);
+         console.log(pos);
+      }
+   }
+
+   function handleMouseOver(event, pos) {
+      if (mouseDown) console.log(pos);
+   }
+
+   function handleMouseUp(event, pos) {
+      setMouseDown(false);
+      console.log(pos);
+   }
+
    aStarAlgo.init(nodes);
+   console.log(nodes);
 
    return (
       <div className="grid">
@@ -46,11 +73,16 @@ export const PathfindingVisualizer = () => {
                   {row.map((col, cindx) => (
                      <Node
                         key={cindx}
-                        pos={[rindx, cindx]}
+                        pos={[cindx, rindx]}
                         startNode={startNode}
                         endNode={endNode}
                         handleDragStart={handleDragStart}
                         handleDrop={handleDrop}
+                        // handleClick={handleClick}
+                        handleMouseDown={handleMouseDown}
+                        handleMouseOver={handleMouseOver}
+                        handleMouseUp={handleMouseUp}
+                        mouseDown={mouseDown}
                      />
                   ))}
                </div>

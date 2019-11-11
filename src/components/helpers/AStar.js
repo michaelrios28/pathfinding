@@ -11,9 +11,15 @@ export let aStarAlgo = {
             grid[x][y].h = 0;
             grid[x][y].debug = "";
             grid[x][y].parent = null;
-
-            console.log(grid[x][y]);
+            grid[x][y].isWall = false;
          }
       }
+   },
+
+   search: function(grid, start, end) {
+      let openList = [];
+      let closedList = [];
+
+      openList.push(start);
    }
 };

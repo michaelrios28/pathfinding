@@ -1,12 +1,12 @@
 .node {
    width: 25px;
    height: 25px;
-   margin: 1px;
+   /* margin: 1px; */
    background-color: #fafafa;
 
-   /* border-style: solid;
+   border-style: solid;
    border-width: 1px 1px 0px 0px;
-   border-color: gainsboro; */
+   border-color: white;
 }
 
 /* .node:hover {
@@ -27,4 +27,9 @@
 
 .node:drag-over {
    outline: 1px solid black;
+}
+
+.wall {
+   background-color: #424242;
+   border-color: #424242;
 }
