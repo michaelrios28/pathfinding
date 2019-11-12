@@ -45,7 +45,7 @@ export const PathfindingVisualizer = () => {
       ) {
          mouseDown = true;
          event.target.classList.add("wall");
-         aStarAlgo.grid[pos[1]][pos[0]].isWall = true;
+         aStarAlgo.grid[pos[0]][pos[1]].isWall = true;
       }
    }
 
@@ -57,7 +57,7 @@ export const PathfindingVisualizer = () => {
       ) {
          console.log(pos);
          event.target.classList.add("wall");
-         aStarAlgo.grid[pos[1]][pos[0]].isWall = true;
+         aStarAlgo.grid[pos[0]][pos[1]].isWall = true;
       }
    }
 
@@ -84,12 +84,12 @@ export const PathfindingVisualizer = () => {
             Visualize
          </Fab>
          <div className="grid">
-            {aStarAlgo.grid.map((col, cindx) => {
+            {aStarAlgo.grid.map((row, rindx) => {
                return (
-                  <div key={cindx} className="row">
-                     {col.map((row, rindx) => (
+                  <div key={rindx} className="row">
+                     {row.map((col, cindx) => (
                         <Node
-                           key={rindx}
+                           key={cindx}
                            pos={[rindx, cindx]}
                            startNode={startNode}
                            endNode={endNode}
