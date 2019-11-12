@@ -3,15 +3,26 @@
 // not the quickest solution. Will be using lists
 // TODO: replace w/ Binary heap
 export let aStarAlgo = {
-   init: function(grid) {
-      for (let x = 0; x < grid.length; x++) {
-         for (let y = 0; y < grid[0].length; y++) {
-            grid[x][y].f = 0;
-            grid[x][y].g = 0;
-            grid[x][y].h = 0;
-            grid[x][y].debug = "";
-            grid[x][y].parent = null;
-            grid[x][y].isWall = false;
+   grid: [],
+
+   init: function() {
+      // create grid
+      for (let row = 0; row < 30; row++) {
+         const currentRow = [];
+         for (let col = 0; col < 60; col++) {
+            currentRow.push([]);
+         }
+         this.grid.push(currentRow);
+      }
+
+      for (let x = 0; x < this.grid.length; x++) {
+         for (let y = 0; y < this.grid[0].length; y++) {
+            this.grid[x][y].f = 0;
+            this.grid[x][y].g = 0;
+            this.grid[x][y].h = 0;
+            this.grid[x][y].debug = "";
+            this.grid[x][y].parent = null;
+            this.grid[x][y].isWall = false;
          }
       }
    },

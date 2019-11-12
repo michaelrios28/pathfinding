@@ -4,27 +4,16 @@ import "./PathfindingVisualizer.css";
 import { aStarAlgo } from "../helpers/AStar";
 
 export const PathfindingVisualizer = () => {
-   const nodes = []; // 2D Array
    let startNode = [0, 0];
    let endNode = [59, 29];
    let mouseDown = false;
    let draggedNode = "";
 
    // create grid
-   for (let row = 0; row < 30; row++) {
-      const currentRow = [];
-      for (let col = 0; col < 60; col++) {
-         currentRow.push([]);
-      }
-      nodes.push(currentRow);
-   }
-   for (let x = 0; x < nodes.length; x++) {
-      for (let y = 0; y < nodes[0].length; y++) {
-         nodes[x][y].isWall = false;
-      }
-   }
+   aStarAlgo.init();
+   console.log(aStarAlgo.grid);
 
-   function handleDragStart(event, pos) {
+   function handleDragStart(event) {
       if (event.target.classList.contains("startNode")) {
          draggedNode = "startNode";
          event.target.classList.remove("startNode");
@@ -73,11 +62,9 @@ export const PathfindingVisualizer = () => {
       mouseDown = false;
    }
 
-   aStarAlgo.init(nodes);
-
    return (
       <div className="grid">
-         {nodes.map((row, rindx) => {
+         {aStarAlgo.grid.map((row, rindx) => {
             return (
                <div key={rindx} className="row">
                   {row.map((col, cindx) => (

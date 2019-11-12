@@ -28,7 +28,7 @@ export const Node = props => {
          onMouseUp={e => props.handleMouseUp(e, props.pos)}
          className={className}
          draggable={draggable}
-         onDragStart={e => props.handleDragStart(e, props.pos)}
+         onDragStart={e => props.handleDragStart(e)}
          onDrop={e => props.handleDrop(e, props.pos)}
          //styling
          onDragEnter={e => (e.target.style.backgroundColor = "#cfd8dc")}
