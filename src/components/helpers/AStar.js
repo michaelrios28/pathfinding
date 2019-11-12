@@ -9,7 +9,7 @@ export let aStarAlgo = {
       // create grid
       for (let row = 0; row < 30; row++) {
          const currentRow = [];
-         for (let col = 0; col < 60; col++) {
+         for (let col = 0; col < 80; col++) {
             currentRow.push([]);
          }
          this.grid.push(currentRow);

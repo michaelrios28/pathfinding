@@ -2,10 +2,11 @@ import React from "react";
 import { Node } from "../Node/Node";
 import "./PathfindingVisualizer.css";
 import { aStarAlgo } from "../helpers/AStar";
+import Fab from "@material-ui/core/Fab";
 
 export const PathfindingVisualizer = () => {
    let startNode = [0, 0];
-   let endNode = [59, 29];
+   let endNode = [79, 29];
    let mouseDown = false;
    let draggedNode = "";
 
@@ -44,6 +45,7 @@ export const PathfindingVisualizer = () => {
       ) {
          mouseDown = true;
          event.target.classList.add("wall");
+         aStarAlgo.grid[pos[1]][pos[0]].isWall = true;
       }
    }
 
@@ -55,6 +57,7 @@ export const PathfindingVisualizer = () => {
       ) {
          console.log(pos);
          event.target.classList.add("wall");
+         aStarAlgo.grid[pos[1]][pos[0]].isWall = true;
       }
    }
 
@@ -62,28 +65,46 @@ export const PathfindingVisualizer = () => {
       mouseDown = false;
    }
 
+   function handleClick() {
+      console.log("array", aStarAlgo.grid);
+   }
+
    return (
-      <div className="grid">
-         {aStarAlgo.grid.map((row, rindx) => {
-            return (
-               <div key={rindx} className="row">
-                  {row.map((col, cindx) => (
-                     <Node
-                        key={cindx}
-                        pos={[cindx, rindx]}
-                        startNode={startNode}
-                        endNode={endNode}
-                        handleDragStart={handleDragStart}
-                        handleDrop={handleDrop}
-                        handleMouseDown={handleMouseDown}
-                        handleMouseOver={handleMouseOver}
-                        handleMouseUp={handleMouseUp}
-                        mouseDown={mouseDown}
-                     />
-                  ))}
-               </div>
-            );
-         })}
-      </div>
+      <React.Fragment>
+         <Fab
+            variant="extended"
+            aria-label="like"
+            onClick={handleClick}
+            style={{
+               backgroundColor: "#0091ea",
+               color: "white",
+               margin: "10px"
+            }}
+         >
+            Visualize
+         </Fab>
+         <div className="grid">
+            {aStarAlgo.grid.map((col, cindx) => {
+               return (
+                  <div key={cindx} className="row">
+                     {col.map((row, rindx) => (
+                        <Node
+                           key={rindx}
+                           pos={[rindx, cindx]}
+                           startNode={startNode}
+                           endNode={endNode}
+                           handleDragStart={handleDragStart}
+                           handleDrop={handleDrop}
+                           handleMouseDown={handleMouseDown}
+                           handleMouseOver={handleMouseOver}
+                           handleMouseUp={handleMouseUp}
+                           mouseDown={mouseDown}
+                        />
+                     ))}
+                  </div>
+               );
+            })}
+         </div>
+      </React.Fragment>
    );
 };
