@@ -15,14 +15,14 @@ export let aStarAlgo = {
          this.grid.push(currentRow);
       }
 
-      for (let x = 0; x < this.grid.length; x++) {
-         for (let y = 0; y < this.grid[0].length; y++) {
-            this.grid[x][y].f = 0;
-            this.grid[x][y].g = 0;
-            this.grid[x][y].h = 0;
-            this.grid[x][y].debug = "";
-            this.grid[x][y].parent = null;
-            this.grid[x][y].isWall = false;
+      for (let row = 0; row < this.grid.length; row++) {
+         for (let col = 0; col < this.grid[0].length; col++) {
+            this.grid[row][col].f = 0;
+            this.grid[row][col].g = 0;
+            this.grid[row][col].h = 0;
+            this.grid[row][col].debug = "";
+            this.grid[row][col].parent = null;
+            this.grid[row][col].isWall = false;
          }
       }
    },

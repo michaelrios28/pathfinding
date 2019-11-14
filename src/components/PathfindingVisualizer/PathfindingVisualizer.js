@@ -6,7 +6,7 @@ import Fab from "@material-ui/core/Fab";
 
 export const PathfindingVisualizer = () => {
    let startNode = [0, 0];
-   let endNode = [79, 29];
+   let endNode = [29, 79];
    let mouseDown = false;
    let draggedNode = "";
 
