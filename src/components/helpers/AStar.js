@@ -27,10 +27,13 @@ export let aStarAlgo = {
       }
    },
 
-   search: function(grid, start, end) {
+   search: function(start, end) {
       let openList = [];
       let closedList = [];
-
       openList.push(start);
+
+      console.log("start", start);
+      console.log("end", end);
+      console.log("openList", openList);
    }
 };

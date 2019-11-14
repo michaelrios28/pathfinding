@@ -3,6 +3,7 @@ import { Node } from "../Node/Node";
 import "./PathfindingVisualizer.css";
 import { aStarAlgo } from "../helpers/AStar";
 import Fab from "@material-ui/core/Fab";
+import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 
 export const PathfindingVisualizer = () => {
    let startNode = [0, 0];
@@ -67,6 +68,7 @@ export const PathfindingVisualizer = () => {
 
    function handleClick() {
       console.log("array", aStarAlgo.grid);
+      aStarAlgo.search(startNode, endNode);
    }
 
    return (
@@ -81,6 +83,7 @@ export const PathfindingVisualizer = () => {
                margin: "10px"
             }}
          >
+            <PlayArrowIcon style={{ marginRight: "5px" }} />
             Visualize
          </Fab>
          <div className="grid">
