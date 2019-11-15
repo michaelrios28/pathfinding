@@ -1,9 +1,9 @@
 import React from "react";
 import { Node } from "../Node/Node";
-import "./PathfindingVisualizer.css";
-import { aStarAlgo } from "../helpers/AStar";
+import { aStarAlgo } from "../../algorithms/AStar";
 import Fab from "@material-ui/core/Fab";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
+import "./PathfindingVisualizer.css";
 
 export const PathfindingVisualizer = () => {
    let startNode = [0, 0];
