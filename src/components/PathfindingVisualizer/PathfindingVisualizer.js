@@ -1,6 +1,6 @@
 import React from "react";
 import { Node } from "../Node/Node";
-import { aStarAlgo } from "../../algorithms/AStar";
+import { aStarAlgo } from "../../algorithms/a_star_algorithm";
 import Fab from "@material-ui/core/Fab";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import "./PathfindingVisualizer.css";

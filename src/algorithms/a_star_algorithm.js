@@ -2,7 +2,7 @@
 // returns visited nodes in order (maybe ?)
 // not the quickest solution. Will be using lists
 // TODO: replace w/ Binary heap
-export let aStarAlgo = {
+export const aStarAlgo = {
    grid: [],
 
    init: function() {
