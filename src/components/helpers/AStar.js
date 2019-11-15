@@ -35,5 +35,13 @@ export let aStarAlgo = {
       console.log("start", start);
       console.log("end", end);
       console.log("openList", openList);
+
+      // LOOP
+      while (openList.length > 0) {
+         let current = openList.pop(); // remove current from open
+         closedList.push(current);
+         console.log("current", current);
+         // Do something with current
+      }
    }
 };
