@@ -2,27 +2,30 @@
 // returns visited nodes in order (maybe ?)
 // not the quickest solution. Will be using lists
 // TODO: replace w/ Binary heap
+
+const COLUMN_COUNT = 80;
+const ROW_COUNT = 40;
+
 export const aStarAlgo = {
    grid: [],
 
    init: function() {
       // create grid
-      for (let row = 0; row < 40; row++) {
-         const currentRow = [];
-         for (let col = 0; col < 80; col++) {
-            currentRow.push([]);
+      for (let x = 0; x < COLUMN_COUNT; x++) {
+         this.grid[x] = []; // inner array
+         for (let y = 0; y < ROW_COUNT; y++) {
+            this.grid[x][y] = [];
          }
-         this.grid.push(currentRow);
       }
 
-      for (let row = 0; row < this.grid.length; row++) {
-         for (let col = 0; col < this.grid[0].length; col++) {
-            this.grid[row][col].f = 0;
-            this.grid[row][col].g = 0;
-            this.grid[row][col].h = 0;
-            this.grid[row][col].debug = "";
-            this.grid[row][col].parent = null;
-            this.grid[row][col].isWall = false;
+      for (let x = 0; x < this.grid.length; x++) {
+         for (let y = 0; y < this.grid[0].length; y++) {
+            this.grid[x][y].f = 0;
+            this.grid[x][y].g = 0;
+            this.grid[x][y].h = 0;
+            this.grid[x][y].debug = "";
+            this.grid[x][y].parent = null;
+            this.grid[x][y].isWall = false;
          }
       }
    },

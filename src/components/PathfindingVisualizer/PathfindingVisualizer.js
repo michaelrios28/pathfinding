@@ -6,8 +6,8 @@ import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import "./PathfindingVisualizer.css";
 
 export const PathfindingVisualizer = () => {
-   let startNode = [0, 0];
-   let endNode = [29, 79];
+   let startNode = [10, 5];
+   let endNode = [69, 5];
    let mouseDown = false;
    let draggedNode = "";
 
@@ -67,7 +67,7 @@ export const PathfindingVisualizer = () => {
    }
 
    function handleClick() {
-      console.log("array", aStarAlgo.grid);
+      console.log("aStarAlgo.grid: ", aStarAlgo.grid);
       aStarAlgo.search(startNode, endNode);
    }
 
@@ -87,13 +87,13 @@ export const PathfindingVisualizer = () => {
             Visualize
          </Fab>
          <div className="grid">
-            {aStarAlgo.grid.map((row, rindx) => {
+            {aStarAlgo.grid[0].map((row, rindx) => {
                return (
                   <div key={rindx} className="row">
-                     {row.map((col, cindx) => (
+                     {aStarAlgo.grid.map((col, cindx) => (
                         <Node
                            key={cindx}
-                           pos={[rindx, cindx]}
+                           pos={[cindx, rindx]}
                            startNode={startNode}
                            endNode={endNode}
                            handleDragStart={handleDragStart}
