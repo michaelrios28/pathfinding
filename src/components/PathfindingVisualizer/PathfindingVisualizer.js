@@ -72,15 +72,15 @@ export const PathfindingVisualizer = () => {
    }
 
    return (
-      <React.Fragment>
+      <div className="pv">
          <Fab
+            size="small"
             variant="extended"
             aria-label="like"
             onClick={handleClick}
             style={{
                backgroundColor: "#0091ea",
-               color: "white",
-               margin: "10px"
+               color: "white"
             }}
          >
             <PlayArrowIcon style={{ marginRight: "5px" }} />
@@ -108,6 +108,6 @@ export const PathfindingVisualizer = () => {
                );
             })}
          </div>
-      </React.Fragment>
+      </div>
    );
 };
