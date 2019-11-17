@@ -2,8 +2,8 @@ import React from "react";
 import { Node } from "../Node/Node";
 import { aStarAlgo } from "../../algorithms/a_star_algorithm";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
-import Fab from "@material-ui/core/Fab";
 import "./PathfindingVisualizer.css";
+import Button from "@material-ui/core/Button";
 
 export const PathfindingVisualizer = () => {
    let startNode = [10, 5];
@@ -72,10 +72,9 @@ export const PathfindingVisualizer = () => {
 
    return (
       <div className="pv">
-         <Fab
+         <Button
             size="small"
-            variant="extended"
-            aria-label="like"
+            variant="contained"
             onClick={handleClick}
             style={{
                backgroundColor: "#0091ea",
@@ -84,7 +83,7 @@ export const PathfindingVisualizer = () => {
          >
             <PlayArrowIcon style={{ marginRight: "5px" }} />
             Visualize
-         </Fab>
+         </Button>
          <div className="grid" data-testid="grid">
             {aStarAlgo.grid[0].map((row, rindx) => {
                return (
