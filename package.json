@@ -3,7 +3,9 @@
    "version": "0.1.0",
    "private": true,
    "dependencies": {
+      "@material-ui/core": "^4.6.1",
       "@material-ui/icons": "^4.5.1",
+      "identity-obj-proxy": "^3.0.0",
       "react": "^16.11.0",
       "react-dom": "^16.11.0",
       "react-scripts": "3.2.0"
@@ -30,6 +32,19 @@
       "@babel/core": "^7.7.2",
       "@babel/preset-env": "^7.7.1",
       "@babel/preset-react": "^7.7.0",
+      "@testing-library/jest-dom": "^4.2.4",
+      "@testing-library/react": "^9.3.2",
       "babel-jest": "^24.9.0"
+   },
+   "jest": {
+      "moduleNameMapper": {
+         "\\.(css|less, )$": "identity-obj-proxy"
+      }
+   },
+   "babel": {
+      "presets": [
+         "@babel/preset-env",
+         "@babel/preset-react"
+      ]
    }
 }

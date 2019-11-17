@@ -1,8 +1,8 @@
 import React from "react";
 import { Node } from "../Node/Node";
 import { aStarAlgo } from "../../algorithms/a_star_algorithm";
-import Fab from "@material-ui/core/Fab";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
+import Fab from "@material-ui/core/Fab";
 import "./PathfindingVisualizer.css";
 
 export const PathfindingVisualizer = () => {
@@ -13,7 +13,6 @@ export const PathfindingVisualizer = () => {
 
    // create grid
    aStarAlgo.init();
-   console.log(aStarAlgo.grid);
 
    function handleDragStart(event) {
       if (event.target.classList.contains("startNode")) {
@@ -86,7 +85,7 @@ export const PathfindingVisualizer = () => {
             <PlayArrowIcon style={{ marginRight: "5px" }} />
             Visualize
          </Fab>
-         <div className="grid">
+         <div className="grid" data-testid="grid">
             {aStarAlgo.grid[0].map((row, rindx) => {
                return (
                   <div key={rindx} className="row">

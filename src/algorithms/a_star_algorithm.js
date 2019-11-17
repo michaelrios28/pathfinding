@@ -14,7 +14,7 @@ export const aStarAlgo = {
       for (let x = 0; x < COLUMN_COUNT; x++) {
          this.grid[x] = []; // inner array
          for (let y = 0; y < ROW_COUNT; y++) {
-            this.grid[x][y] = [];
+            this.grid[x][y] = {};
          }
       }
 
