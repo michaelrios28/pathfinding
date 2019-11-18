@@ -1,9 +1,12 @@
 .grid {
-   border-style: solid;
-   border-width: 5px;
-   border-color: gainsboro;
+   /* border-style: solid; */
+   /* border-width: 5px; */
+   /* border-color: gainsboro; */
    align-items: center;
-   margin-top: 10px;
+   /* margin-top: 10px; */
+   margin: 2%;
+   padding: 2%;
+   background-color: white;
 }
 
 .row {

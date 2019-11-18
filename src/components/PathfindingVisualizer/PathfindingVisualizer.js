@@ -4,6 +4,8 @@ import { aStarAlgo } from "../../algorithms/a_star_algorithm";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import "./PathfindingVisualizer.css";
 import Button from "@material-ui/core/Button";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
 
 export const PathfindingVisualizer = () => {
    let startNode = [10, 5];
@@ -71,14 +73,15 @@ export const PathfindingVisualizer = () => {
    }
 
    return (
-      <div className="pv">
+      <React.Fragment>
          <Button
             size="small"
             variant="contained"
             onClick={handleClick}
             style={{
                backgroundColor: "#0091ea",
-               color: "white"
+               color: "white",
+               margin: "10px"
             }}
          >
             <PlayArrowIcon style={{ marginRight: "5px" }} />
@@ -106,6 +109,6 @@ export const PathfindingVisualizer = () => {
                );
             })}
          </div>
-      </div>
+      </React.Fragment>
    );
 };
