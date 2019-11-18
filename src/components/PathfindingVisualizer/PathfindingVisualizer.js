@@ -4,8 +4,6 @@ import { aStarAlgo } from "../../algorithms/a_star_algorithm";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import "./PathfindingVisualizer.css";
 import Button from "@material-ui/core/Button";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
 
 export const PathfindingVisualizer = () => {
    let startNode = [10, 5];
