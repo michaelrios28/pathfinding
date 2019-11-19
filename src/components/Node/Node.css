@@ -36,5 +36,5 @@
 .wall {
    background-color: #424242;
    border-color: #424242;
-   transition: background-color 1s linear, border-color 1s linear;
+   transition: background-color 1s ease-in, border-color 1s ease-in;
 }

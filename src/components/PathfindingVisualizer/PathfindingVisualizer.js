@@ -4,6 +4,23 @@ import { aStarAlgo } from "../../algorithms/a_star_algorithm";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import "./PathfindingVisualizer.css";
 import Button from "@material-ui/core/Button";
+import { styled } from "@material-ui/core/styles";
+
+// styled components api
+const MyButton = styled(Button)({
+   background: "#2196f3",
+   border: 0,
+   borderRadius: 3,
+   boxShadow: "0px 8px 15px rgba(33,150,243, 0.3)",
+   transition: "box-shadow 1s ease-in",
+   color: "white",
+   marginLeft: "2%",
+   marginTop: "1%",
+   "&:hover": {
+      background: "#2196f3",
+      boxShadow: "0px 15px 20px rgba(33,150,243, 0.5)"
+   }
+});
 
 export const PathfindingVisualizer = () => {
    let startNode = [10, 5];
@@ -72,19 +89,10 @@ export const PathfindingVisualizer = () => {
 
    return (
       <React.Fragment>
-         <Button
-            size="small"
-            variant="contained"
-            onClick={handleClick}
-            style={{
-               backgroundColor: "#0091ea",
-               color: "white",
-               margin: "10px"
-            }}
-         >
+         <MyButton onClick={handleClick}>
             <PlayArrowIcon style={{ marginRight: "5px" }} />
             Visualize
-         </Button>
+         </MyButton>
          <div className="grid" data-testid="grid">
             {aStarAlgo.grid[0].map((row, rindx) => {
                return (
