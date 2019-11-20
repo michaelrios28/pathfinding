@@ -12,7 +12,7 @@ const MyButton = styled(Button)({
    border: 0,
    borderRadius: 3,
    boxShadow: "0px 8px 15px rgba(33,150,243, 0.3)",
-   transition: "box-shadow 1s ease-in",
+   transition: "box-shadow 300ms ease-in",
    color: "white",
    marginLeft: "2%",
    marginTop: "1%",
