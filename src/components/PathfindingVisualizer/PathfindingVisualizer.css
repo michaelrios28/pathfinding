@@ -19,3 +19,37 @@
 .pv {
    margin: 2%;
 }
+
+.dot.start {
+   height: 10px;
+   width: 10px;
+   border-radius: 50%;
+   background-color: #1de9b6;
+   display: inline-block;
+   margin-right: 5px;
+}
+.dot.end {
+   height: 10px;
+   width: 10px;
+   border-radius: 50%;
+   background-color: #ff1744;
+   display: inline-block;
+   margin-right: 5px;
+}
+
+.dot.wall {
+   height: 10px;
+   width: 10px;
+   border-radius: 50%;
+   background-color: #424242;
+   display: inline-block;
+   margin-right: 5px;
+}
+.legend {
+   display: flex;
+   /* justify-content: center; */
+}
+
+.item {
+   margin: 20px 10px 0px 2%;
+}

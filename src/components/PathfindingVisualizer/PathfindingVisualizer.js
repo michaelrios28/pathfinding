@@ -104,10 +104,26 @@ export const PathfindingVisualizer = () => {
 
    return (
       <React.Fragment>
-         <Button className={classes.visualizeButton}>
+         <Button className={classes.visualizeButton} onClick={handleClick}>
             <PlayArrowIcon style={{ marginRight: "5px" }} />
             Visualize
          </Button>
+
+         <div className="legend">
+            <div className="item">
+               <span className="dot start" />
+               <span>Start Node</span>
+            </div>
+            <div className="item">
+               <span className="dot end" />
+               <span>End Node</span>
+            </div>
+            <div className="item">
+               <span className="dot wall" />
+               <span>Non-Traversable Node</span>
+            </div>
+         </div>
+
          <div className="grid" data-testid="grid">
             {aStarAlgo.grid[0].map((row, rindx) => {
                return (
