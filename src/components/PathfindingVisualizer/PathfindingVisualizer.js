@@ -1,43 +1,9 @@
 import React from "react";
 import { Node } from "../Node/Node";
 import { aStarAlgo } from "../../algorithms/a_star_algorithm";
-import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import "./PathfindingVisualizer.css";
-import Button from "@material-ui/core/Button";
-import { makeStyles } from "@material-ui/core/styles";
-
-const useStyles = makeStyles({
-   visualizeButton: {
-      background: "#2196f3",
-      border: 0,
-      borderRadius: 3,
-      boxShadow: "0px 8px 15px rgba(33,150,243, 0.3)",
-      transition: "box-shadow 300ms ease-in",
-      color: "white",
-      marginLeft: "2%",
-      marginTop: "2%",
-      // marginTop: "1%",
-      "&:hover": {
-         background: "#2196f3",
-         boxShadow: "0px 12px 18px rgba(33,150,243, 0.4)"
-      }
-   },
-   topBar: {
-      background: "white",
-      backgroundColor: "white",
-      boxShadow: "none",
-      borderBottom: "1px solid #f5f5f5",
-      height: "50px"
-   },
-   toolbar: {
-      height: "50px",
-      minHeight: "50px"
-   }
-});
 
 export const PathfindingVisualizer = () => {
-   const classes = useStyles();
-
    let startNode = [10, 5];
    let endNode = [69, 5];
    let mouseDown = false;
@@ -104,26 +70,6 @@ export const PathfindingVisualizer = () => {
 
    return (
       <React.Fragment>
-         <Button className={classes.visualizeButton} onClick={handleClick}>
-            <PlayArrowIcon style={{ marginRight: "5px" }} />
-            Visualize
-         </Button>
-
-         <div className="legend">
-            <div className="item">
-               <span className="dot start" />
-               <span>Start Node</span>
-            </div>
-            <div className="item">
-               <span className="dot end" />
-               <span>End Node</span>
-            </div>
-            <div className="item">
-               <span className="dot wall" />
-               <span>Non-Traversable Node</span>
-            </div>
-         </div>
-
          <div className="grid" data-testid="grid">
             {aStarAlgo.grid[0].map((row, rindx) => {
                return (
