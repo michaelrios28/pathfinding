@@ -1,7 +1,11 @@
 import React from "react";
 import { Node } from "../Node/Node";
 import { aStarAlgo } from "../../algorithms/a_star_algorithm";
+import { Badge } from "antd";
+import { Button } from "antd";
+
 import "./PathfindingVisualizer.css";
+import "antd/dist/antd.css"; // or 'antd/dist/antd.less'
 
 export const PathfindingVisualizer = () => {
    let startNode = [10, 5];
@@ -70,6 +74,19 @@ export const PathfindingVisualizer = () => {
 
    return (
       <React.Fragment>
+         <Button type="primary" onClick={handleClick}>
+            Visualize
+         </Button>
+
+         <div className="labels">
+            <Badge color="#1de9b6" text="Start Node" />
+            <br />
+            <Badge color="#ff1744" text="End Node" />
+            <br />
+            <Badge color="#424242" text="Wall Node" />
+            <br />
+         </div>
+
          <div className="grid" data-testid="grid">
             {aStarAlgo.grid[0].map((row, rindx) => {
                return (
