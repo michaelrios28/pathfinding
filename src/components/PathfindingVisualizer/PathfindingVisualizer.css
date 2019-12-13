@@ -4,7 +4,6 @@
    /* border-color: gainsboro; */
    align-items: center;
    /* margin-top: 10px; */
-   margin: 2%;
    background-color: white;
 
    border-left: 1px solid #f5f5f5;
@@ -17,5 +16,20 @@
 }
 
 .pv {
+   margin: 2%;
+}
+
+.menu {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin-bottom: 20px;
+}
+
+.key > span {
+   margin-right: 50px;
+}
+
+.root {
    margin: 2%;
 }

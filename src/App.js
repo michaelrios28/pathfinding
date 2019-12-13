@@ -1,5 +1,6 @@
 import React from "react";
 import { PathfindingVisualizer } from "./components/PathfindingVisualizer/PathfindingVisualizer";
+import "antd/dist/antd.css"; // or 'antd/dist/antd.less'
 
 function App() {
    return <PathfindingVisualizer />;

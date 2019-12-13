@@ -5,7 +5,6 @@ import { Badge } from "antd";
 import { Button } from "antd";
 
 import "./PathfindingVisualizer.css";
-import "antd/dist/antd.css"; // or 'antd/dist/antd.less'
 
 export const PathfindingVisualizer = () => {
    let startNode = [10, 5];
@@ -73,18 +72,16 @@ export const PathfindingVisualizer = () => {
    }
 
    return (
-      <React.Fragment>
-         <Button type="primary" onClick={handleClick}>
-            Visualize
-         </Button>
-
-         <div className="labels">
-            <Badge color="#1de9b6" text="Start Node" />
-            <br />
-            <Badge color="#ff1744" text="End Node" />
-            <br />
-            <Badge color="#424242" text="Wall Node" />
-            <br />
+      <div className="root">
+         <div className="menu">
+            <Button type="primary" onClick={handleClick}>
+               Visualize
+            </Button>
+            <div className="key">
+               <Badge color="#1de9b6" text="Start Node" />
+               <Badge color="#ff1744" text="End Node" />
+               <Badge color="#424242" text="Wall Node" />
+            </div>
          </div>
 
          <div className="grid" data-testid="grid">
@@ -109,6 +106,6 @@ export const PathfindingVisualizer = () => {
                );
             })}
          </div>
-      </React.Fragment>
+      </div>
    );
 };
