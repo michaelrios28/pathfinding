@@ -1,0 +1,17 @@
+.grid > div {
+   /* position: absolute;
+   width: 20px;
+   height: 20px;
+   background-color: pink;
+   overflow: visible;
+   pointer-events: auto;
+   transform-origin: 50% 50% 0px;
+   border-radius: 5px;
+   color: white;
+   line-height: 90px;
+   padding-left: 32px;
+   font-size: 14.5px;
+   background: lightblue;
+   text-transform: uppercase;
+   letter-spacing: 2px; */
+}
