@@ -1,89 +1,113 @@
-import React, { useRef } from "react"
+import React, { useRef, useEffect, useState } from "react"
 import VisualizerHeader from "./VisualizerHeader"
 import { chunk, flatten, clamp } from "lodash"
 import styled from "styled-components"
-import { useDrag, useGesture } from "react-use-gesture"
-import { useSprings, animated, interpolate } from "react-spring"
 import swap from "lodash-move"
-import "./styles.css"
+import { motion, useAnimation } from "framer-motion"
 
-const Node = styled(animated.div)`
-   width: 30px;
-   height: 30px;
+const StyledNode = styled(motion.div)`
+   flex: 1 0 auto;
    background-color: #eee;
-   margin: 2px;
-   border-radius: 3px;
-   position: absolute;
-`
-
-const Grid = styled.div`
-   margin: 2%;
-   position: relative;
-   width: 100vw;
-   height: 100vh;
-`
-
-const layout = i => {
-   const row = Math.floor(i / 30)
-   const col = i % 30
-   return [35 * col, 35 * row]
-}
-
-// Returns fitting styles for dragged/idle items
-const fn = (order, down, originalIndex, curIndex, x, y) => index => {
-   if (down && index === originalIndex) {
-      let [tempx, tempy] = layout(curIndex)
-      return {
-         x: tempx + x,
-         y: tempy + y,
-         scale: 1.1,
-         zIndex: "1",
-         immediate: false
-      }
+   border-radius: 5px;
+   margin: 4px;
+   :before {
+      padding-top: 100%;
+      content: "";
+      display: block;
    }
-   let [tempx, tempy] = layout(order.indexOf(index))
-   return { x: tempx, y: tempy, scale: 1, zIndex: "0", immediate: false }
-}
+`
+const Grid = styled.div`
+   align-items: center;
+   margin: 2%;
+`
+const Row = styled.div`
+   display: flex;
+   justify-content: center;
+`
 
 export const PathfindingVisualizer = () => {
-   let items = new Array(200).fill("")
-   const order = useRef(items.map((_, index) => index)) // Store indicies as a local ref, this represents the order of the array
-   const [springs, setSprings] = useSprings(items.length, fn(order.current)) // Create springs, each corresponds to an item, controlling its transform, scale, etc.
+   // temporary create grid
+   let grid = []
+   // rows
+   for (let x = 0; x < 30; x++) {
+      grid[x] = [] // inner array
+      //cols
+      for (let y = 0; y < 50; y++) {
+         grid[x][y] = {
+            f: 0,
+            g: 0,
+            h: 0,
+            parent: null,
+            isWall: false,
+            pos: `${x}, ${y}`
+         }
+      }
+   }
 
-   const bind = useDrag(({ args: [originalIndex], down, movement: [x, y] }) => {
-      const curIndex = order.current.indexOf(originalIndex)
-      let [tempx, tempy] = layout(curIndex)
-      const curCol = clamp(Math.round((tempx + x) / 35), 0, 30 - 1)
-      const curRow = clamp(
-         Math.round((tempy + y) / 35),
-         0,
-         Math.floor(items.length / 30)
-      )
-      const index = curRow * 30 + curCol
-      const newOrder = swap(order.current, curIndex, index)
-      setSprings(fn(newOrder, down, originalIndex, curIndex, x, y)) // Feed springs new style data, they'll animate the view without causing a single render
-      if (!down) order.current = newOrder
-   })
+   const controls = useAnimation()
+   useEffect(() => {
+      controls.start(i => {
+         console.log("i", i)
+         return {
+            opacity: 0
+         }
+      })
+   }, [])
 
    return (
       <React.Fragment>
          <VisualizerHeader />
          <Grid className="grid">
-            {springs.map(({ zIndex, x, y, scale }, i) => (
-               <Node
-                  {...(i === 1 ? { ...bind(i) } : null)}
-                  key={i}
-                  style={{
-                     zIndex,
-                     transform: interpolate(
-                        [x, y, scale],
-                        (x, y, scale) =>
-                           `translate3d(${x}px,${y}px,0) scale(${scale})`
-                     )
-                  }}
-               />
-            ))}
+            {grid.map((row, rindx) => {
+               return (
+                  <Row key={rindx}>
+                     {row.map((col, cindx) => (
+                        <Node
+                           item={col}
+                           key={`${cindx}, ${rindx}`}
+                           pos={[cindx, rindx]}
+                        />
+                     ))}
+                  </Row>
+               )
+            })}
          </Grid>
       </React.Fragment>
+   )
+}
+
+const Node = ({ item }) => {
+   console.log(" 🐛: Node -> item", item)
+
+   const variants = {
+      wall: {
+         backgroundColor: "#424242"
+      },
+      default: {
+         backgroundColor: "#eee"
+      }
+   }
+
+   // create some local state for the node...
+   const [isWall, setIsWall] = useState(item.isWall)
+
+   const handleNodeClick = () => {
+      item.isWall = !isWall
+      setIsWall(!isWall)
+   }
+
+   return (
+      <StyledNode
+         transition={{
+            type: "spring",
+            stiffness: 260,
+            damping: 20
+         }}
+         animate={isWall ? "wall" : "default"}
+         variants={variants}
+         onClick={handleNodeClick}
+         whileHover={{ scale: 1.2 }}
+         whileTap={{ scale: 0.8 }}
+      />
    )
 }
