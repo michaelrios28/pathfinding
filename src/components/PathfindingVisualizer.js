@@ -1,9 +1,7 @@
-import React, { useRef, useEffect, useState } from "react"
+import React, { useState } from "react"
 import VisualizerHeader from "./VisualizerHeader"
-import { chunk, flatten, clamp } from "lodash"
 import styled from "styled-components"
-import swap from "lodash-move"
-import { motion, useAnimation } from "framer-motion"
+import { motion } from "framer-motion"
 
 const StyledNode = styled(motion.div)`
    flex: 1 0 auto;
@@ -44,26 +42,39 @@ export const PathfindingVisualizer = () => {
       }
    }
 
-   const controls = useAnimation()
-   useEffect(() => {
-      controls.start(i => {
-         console.log("i", i)
-         return {
-            opacity: 0
-         }
-      })
-   }, [])
+   const variants = {
+      wall: {
+         backgroundColor: "#424242"
+      },
+      default: {
+         backgroundColor: "#eee"
+      }
+   }
+
+   const handleVisualizerBtnClick = () => {
+      console.log("VisualizerBtnClick!")
+      grid[0][0].isWall = true
+      console.log(JSON.stringify(grid, 0))
+   }
+
+   const handleClick = (e, pos) => {
+      console.log(" 🐛: handleClick -> e, pos", e, pos)
+   }
 
    return (
       <React.Fragment>
-         <VisualizerHeader />
+         <VisualizerHeader handleClick={handleVisualizerBtnClick} />
          <Grid className="grid">
             {grid.map((row, rindx) => {
                return (
                   <Row key={rindx}>
                      {row.map((col, cindx) => (
                         <Node
+                           onClick={e => handleClick(e, [rindx, cindx])}
+                           variants={variants}
                            item={col}
+                           whileHover={{ scale: 1.2 }}
+                           whileTap={{ scale: 0.8 }}
                            key={`${cindx}, ${rindx}`}
                            pos={[cindx, rindx]}
                         />
