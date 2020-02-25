@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useRef } from "react"
 import VisualizerHeader from "./VisualizerHeader"
 import styled from "styled-components"
 import { motion } from "framer-motion"
@@ -24,6 +24,8 @@ const Row = styled.div`
 `
 
 export const PathfindingVisualizer = () => {
+   const isMouseDown = useRef(false)
+
    // temporary create grid
    let grid = []
    // rows
@@ -42,15 +44,6 @@ export const PathfindingVisualizer = () => {
       }
    }
 
-   const variants = {
-      wall: {
-         backgroundColor: "#424242"
-      },
-      default: {
-         backgroundColor: "#eee"
-      }
-   }
-
    const handleVisualizerBtnClick = () => {
       console.log("VisualizerBtnClick!")
       grid[0][0].isWall = true
@@ -61,22 +54,39 @@ export const PathfindingVisualizer = () => {
       console.log(" 🐛: handleClick -> e, pos", e, pos)
    }
 
+   const handleGridClick = e => {
+      console.log("Grid Click")
+   }
+
+   const handleMouseDown = () => {
+      isMouseDown.current = true
+   }
+
+   const handleMouseUp = () => {
+      isMouseDown.current = false
+   }
+
    return (
       <React.Fragment>
          <VisualizerHeader handleClick={handleVisualizerBtnClick} />
-         <Grid className="grid">
+         <Grid
+            draggable="false"
+            className="grid"
+            onClick={handleGridClick}
+            onMouseDown={handleMouseDown}
+            onMouseUp={handleMouseUp}
+            onMouseLeave={handleMouseUp}
+         >
             {grid.map((row, rindx) => {
                return (
-                  <Row key={rindx}>
+                  <Row key={rindx} draggable="false">
                      {row.map((col, cindx) => (
                         <Node
                            onClick={e => handleClick(e, [rindx, cindx])}
-                           variants={variants}
                            item={col}
-                           whileHover={{ scale: 1.2 }}
-                           whileTap={{ scale: 0.8 }}
                            key={`${cindx}, ${rindx}`}
                            pos={[cindx, rindx]}
+                           isMouseDown={isMouseDown}
                         />
                      ))}
                   </Row>
@@ -87,9 +97,7 @@ export const PathfindingVisualizer = () => {
    )
 }
 
-const Node = ({ item }) => {
-   console.log(" 🐛: Node -> item", item)
-
+const Node = ({ item, isMouseDown }) => {
    const variants = {
       wall: {
          backgroundColor: "#424242"
@@ -102,13 +110,15 @@ const Node = ({ item }) => {
    // create some local state for the node...
    const [isWall, setIsWall] = useState(item.isWall)
 
-   const handleNodeClick = () => {
-      item.isWall = !isWall
-      setIsWall(!isWall)
+   const onHover = () => {
+      if (isMouseDown.current) {
+         setIsWall(!isWall)
+      }
    }
 
    return (
       <StyledNode
+         draggable="false"
          transition={{
             type: "spring",
             stiffness: 260,
@@ -116,9 +126,9 @@ const Node = ({ item }) => {
          }}
          animate={isWall ? "wall" : "default"}
          variants={variants}
-         onClick={handleNodeClick}
          whileHover={{ scale: 1.2 }}
-         whileTap={{ scale: 0.8 }}
+         // whileTap={{ scale: 0.8 }}
+         onHoverStart={onHover}
       />
    )
 }
