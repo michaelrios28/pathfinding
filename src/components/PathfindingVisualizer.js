@@ -7,7 +7,7 @@ const StyledNode = styled(motion.div)`
    flex: 1 0 auto;
    background-color: #eee;
    border-radius: 5px;
-   margin: 4px;
+   margin: 3px;
    :before {
       padding-top: 100%;
       content: "";
@@ -119,6 +119,7 @@ const Node = ({ item, isMouseDown }) => {
    return (
       <StyledNode
          draggable="false"
+         onMouseDown={e => e.preventDefault()} //disable unintended dragging
          transition={{
             type: "spring",
             stiffness: 260,
@@ -126,7 +127,7 @@ const Node = ({ item, isMouseDown }) => {
          }}
          animate={isWall ? "wall" : "default"}
          variants={variants}
-         whileHover={{ scale: 1.2 }}
+         whileHover={{ scale: 1.1 }}
          // whileTap={{ scale: 0.8 }}
          onHoverStart={onHover}
       />
