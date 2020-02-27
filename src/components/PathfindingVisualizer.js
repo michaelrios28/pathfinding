@@ -46,16 +46,14 @@ export const PathfindingVisualizer = () => {
 
    const handleVisualizerBtnClick = () => {
       console.log("VisualizerBtnClick!")
-      grid[0][0].isWall = true
-      console.log(JSON.stringify(grid, 0))
+      console.log(grid)
+      grid.forEach(row => {
+         console.log(JSON.stringify(row, null, 1))
+      })
    }
 
    const handleClick = (e, pos) => {
       console.log(" 🐛: handleClick -> e, pos", e, pos)
-   }
-
-   const handleGridClick = e => {
-      console.log("Grid Click")
    }
 
    const handleMouseDown = () => {
@@ -71,8 +69,6 @@ export const PathfindingVisualizer = () => {
          <VisualizerHeader handleClick={handleVisualizerBtnClick} />
          <Grid
             draggable="false"
-            className="grid"
-            onClick={handleGridClick}
             onMouseDown={handleMouseDown}
             onMouseUp={handleMouseUp}
             onMouseLeave={handleMouseUp}
@@ -110,7 +106,13 @@ const Node = ({ item, isMouseDown }) => {
    // create some local state for the node...
    const [isWall, setIsWall] = useState(item.isWall)
 
-   const onHover = () => {
+   const handleMouseDown = e => {
+      e.preventDefault() // to prevent unintended dragging default
+      setIsWall(!isWall)
+      item.isWall = !item.isWall
+   }
+   const handleHover = () => {
+      // if the user has mouse clicked down...
       if (isMouseDown.current) {
          setIsWall(!isWall)
       }
@@ -119,7 +121,6 @@ const Node = ({ item, isMouseDown }) => {
    return (
       <StyledNode
          draggable="false"
-         onMouseDown={e => e.preventDefault()} //disable unintended dragging
          transition={{
             type: "spring",
             stiffness: 260,
@@ -128,8 +129,8 @@ const Node = ({ item, isMouseDown }) => {
          animate={isWall ? "wall" : "default"}
          variants={variants}
          whileHover={{ scale: 1.1 }}
-         // whileTap={{ scale: 0.8 }}
-         onHoverStart={onHover}
+         onMouseDown={handleMouseDown}
+         onHoverStart={handleHover}
       />
    )
 }
