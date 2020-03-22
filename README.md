@@ -1,5 +1,3 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 <div align="center">
 <h1>pathfinding 🐜</h1>
 
@@ -8,6 +6,8 @@ A-Star pathfinding algorithm w/ a nice visualizer.
 </div>
 
 <hr />
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 
 [![Build Status](https://img.shields.io/travis/michaelrios28/pathfinding.svg?style=for-the-badge)](https://travis-ci.org/michaelrios28/pathfinding)
