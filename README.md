@@ -1,7 +1,7 @@
 <div align="center">
 <h1>pathfinding 🐜</h1>
 
-A-Star pathfinding algorithm w/ a nice visualizer.
+A-Star pathfinding algorithm w/ visualizer.
 
 </div>
 
