@@ -1,5 +1,5 @@
 
-# pathfinding 🐜
+# pathfinding
 
 A-Star pathfinding algorithm w/ visualizer.
 
